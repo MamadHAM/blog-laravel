@@ -81,4 +81,12 @@ class UserController extends Controller
         $request->user()->token()->revoke();
         return response()->json(["msg"=>__("auth.logout_success")]);
     }
+
+    public function profile()
+    {
+        $user = auth()->user();
+
+        return response()->json($user, 200);
+    }
+
 }

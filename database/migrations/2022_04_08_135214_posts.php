@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->string('slug');
-            $table->string('image');
+            $table->string('slug')->unique();
+            $table->string('image')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });
