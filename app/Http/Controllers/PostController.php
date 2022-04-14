@@ -21,7 +21,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'body' => 'required|string',
-            'image' => 'file',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -29,6 +29,10 @@ class PostController extends Controller
         }
 
 
+        //Image
+        $name = $data['image']->getClientOriginalName();
+        $path = $data['image']->store('public/images');
+        die($path);
 
         $data['slug'] = SlugService::createSlug(Post::class, 'slug', $data['title']);
         $data['user_id'] = $user['id'];
