@@ -32,8 +32,8 @@ Route::group(['prefix' => 'user'], function () {
 
 //Post
 Route::post('post', [PostController::class, 'create'])->middleware('auth:api');
-Route::put('post', [PostController::class, 'edit']);
-Route::delete('post', [PostController::class, 'delete']);
+Route::put('post', [PostController::class, 'update'])->middleware('auth:api');
+Route::delete('post', [PostController::class, 'destroy'])->middleware('auth:api');
 Route::get('post', [PostController::class, 'get']);
 
 Route::group(['middleware' => 'auth:api'], function () {
